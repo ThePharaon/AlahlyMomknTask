@@ -1,0 +1,46 @@
+﻿@using AlahlyMomknTask.Infrastructure.Statics
+@inherits LayoutComponentBase
+@layout MainLayout
+<MudLayout>
+    <MudAppBar Dense=true Elevation="1" Color="Color.Info">
+        <MudText Typo="Typo.h5" >Index</MudText>
+        <MudSpacer />
+
+        <MudTooltip Placement="Placement.Bottom"
+                    Arrow
+                    Text="Account Settings"
+                    RootStyle="width: fit-content;"
+                    Inline>
+
+            <MudMenu Icon="@Icons.Material.Filled.AccountCircle"
+                     Color="Color.Inherit"
+                     AnchorOrigin="Origin.BottomCenter"
+                     TransformOrigin="Origin.TopRight">
+
+                <MudStack Justify="Justify.Center"
+                          AlignItems="AlignItems.Center"
+                          Spacing="0"
+                          Class="mb-3 mt-2 px-4">
+
+                    <MudText Typo="Typo.body1">@SystemValues.CurrentUser.Email</MudText>
+                    <MudText Typo="Typo.body1">@SystemValues.CurrentUser.Username</MudText>
+                </MudStack>
+                <MudDivider DividerType="DividerType.FullWidth"
+                            Class="mb-1" />
+
+                <MudStack Class="px-2 mt-1">
+                    <MudButton Variant="Variant.Filled"
+                               FullWidth
+                               Color="Color.Error"
+                               OnClick="DoLogout">
+                        Logout
+                    </MudButton>
+                </MudStack>
+
+            </MudMenu>
+        </MudTooltip>
+    </MudAppBar>
+    <MudMainContent Class="px-5 pt-4" Style="padding-top:0px">
+        @Body
+    </MudMainContent>
+</MudLayout>

@@ -1,0 +1,100 @@
+﻿
+<MudDialog>
+    <TitleContent>
+        @if (IsEdit)
+        {
+            <MudText Typo="Typo.h6">
+
+                <MudIcon Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Class="mr-3 mb-n1" />
+                Edit Item
+
+
+            </MudText>
+
+
+        }
+        else
+        {
+            <MudText Typo="Typo.h6">
+
+                <MudIcon Color="Color.Info" Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                Add New Item
+
+            </MudText>
+
+        }
+    </TitleContent>
+
+    <DialogContent>
+        <MudContainer Style="max-height: 80vh;overflow-y: scroll;" Class="py-2">
+            <EditForm Model="@entity" OnValidSubmit="DoSubmit">
+                <DataAnnotationsValidator />
+                <MudCard>
+                    <MudCardContent>
+                        <MudGrid>
+
+
+
+                            <MudItem xs="12" sm="12" Class="py-0">
+                                <MudTextField Label="Name"
+                                              MaxLength=50
+                                              Class="mt-2"
+                                              Immediate="false"
+                                              HelperText="Write Item name value"
+                                              @bind-Value="entity.Name"
+                                              For="@(() => entity.Name)"
+                                              Variant="Variant.Outlined"
+                                              Margin="Margin.Dense" />
+                            </MudItem>
+                            <MudItem xs="12" sm="12" Class="py-0">
+                                <MudNumericField Label="Price"
+                                                 MaxLength=4
+                                                 Immediate
+                                                 @bind-Value="entity.Price"
+                                                 HideSpinButtons
+                                                 Clearable=false
+                                                 For="@(() => entity.Price)"
+                                                 Variant="Variant.Outlined"
+                                                 Margin="Margin.Dense" />
+                            </MudItem>
+                            <MudItem xs="12" sm="12" Class="py-0">
+                                <MudTextField Label=Description
+                                              MaxLength=200
+                                              Lines="4"
+                                              Class="mt-4"
+                                              Immediate="false"
+                                              HelperText=Description
+                                              @bind-Value="entity.Description"
+                                              For="@(() => entity.Description)"
+                                              Variant="Variant.Outlined"
+                                              Margin="Margin.Dense" />
+                            </MudItem>
+
+
+                        </MudGrid>
+
+
+
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton ButtonType="ButtonType.Submit"
+                                   Variant="Variant.Filled"
+                                   FullWidth
+                                   Color=@(IsEdit?Color.Primary:Color.Info)>
+                            @if (IsEdit)
+                            {
+                                @("Edit")
+                            }
+                            else
+                            {
+                                @("Create")
+                            }
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+
+            </EditForm>
+        </MudContainer>
+
+    </DialogContent>
+</MudDialog>

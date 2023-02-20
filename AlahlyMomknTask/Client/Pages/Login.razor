@@ -1,0 +1,60 @@
+﻿@page "/"
+@layout MainLayout
+
+<PageTitle>Login Page</PageTitle>
+
+<div class="d-flex justify-center align-content-center flex-wrap" style="height:100vh">
+
+    <MudStack Justify="Justify.Center"
+              AlignItems="AlignItems.Center"
+              Spacing="0">
+
+
+        <MudPaper Class="pa-4 mt-5" Elevation="7" MinWidth="350px">
+
+            <MudText Align="Align.Center" Typo="Typo.h4" Class="mb-4">Sign In</MudText>
+
+            <EditForm Model="@User" OnValidSubmit="DoLogin">
+                <DataAnnotationsValidator />
+                <MudTextField @bind-Value="User.Username"
+                              For="@(() => User.Username)"
+                              Label="Username"
+                              MaxLength=50
+                              HelperText="You can enter your username or email."
+                              Variant="Variant.Outlined"
+                              Margin="Margin.Dense"
+                              HelperTextOnFocus />
+                <MudTextField @bind-Value="User.Password"
+                              For="@(() => User.Password)"
+                              Label="Password"
+                              MaxLength=50
+                              HelperText="Enter your account password"
+                              Variant="Variant.Outlined"
+                              InputType="InputType.Password"
+                              Margin="Margin.Dense"
+                              HelperTextOnFocus />
+                <div class="d-flex align-center justify-space-between mt-0">
+                    <MudCheckBox @bind-Value="User.Remember"
+                                 For="@(() => User.Remember)"
+                                 Class="ml-n1"
+                                 Size="Size.Small"
+                                 Dense
+                                 Color="Color.Dark"
+                                 Label="Remember me" />
+                </div>
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Dark"
+                           FullWidth
+                           ButtonType="ButtonType.Submit"
+                           Class="mt-6">Login</MudButton>
+            </EditForm>
+        </MudPaper>
+    </MudStack>
+
+
+
+
+</div>
+@code {
+
+}

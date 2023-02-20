@@ -1,0 +1,20 @@
+﻿@inherits LayoutComponentBase
+
+<MudRTLProvider RightToLeft=false>
+    <MudThemeProvider IsDarkMode=false />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+
+    <MudLayout>
+        <MudMainContent>
+            @Body
+        </MudMainContent>
+    </MudLayout>
+</MudRTLProvider>
+<MudOverlay Visible="isLoading"
+            DarkBackground="true"
+            Absolute
+            ZIndex="9999">
+    <!--Spin-->
+    <MudProgressCircular Color="Color.Info" Style="height:100px;width:100px;" Indeterminate="true" />
+</MudOverlay>

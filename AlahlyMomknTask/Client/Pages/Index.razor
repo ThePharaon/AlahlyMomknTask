@@ -1,0 +1,65 @@
+﻿@page "/Index"
+@layout InnerLayout
+<MudGrid>
+    <MudItem md="12" sm="12">
+        <MudStack Spacing="1" Row Justify="Justify.Center" AlignItems="AlignItems.Center">
+            @foreach (var step in StepsList)
+            {
+                <MudPaper Elevation="@(step.ID == CurrentStep.ID? 7:0)" Class="StepStyle px-5 py-1" @onclick="()=>SetCurrentStep(step.ID)">
+                    <MudStack Row AlignItems="AlignItems.Center">
+                        <MudText Color="@(step.ID == CurrentStep.ID? Color.Dark:Color.Inherit)" Typo="Typo.body1">@step.Name</MudText>
+                        <MudIconButton OnClick="()=> DeleteStep(step)" Color="Color.Inherit" Size="Size.Small" Icon="@Icons.Material.Filled.Close"></MudIconButton>
+                    </MudStack>
+                </MudPaper>
+            }
+
+            <MudIconButton Class="px-5 py-1" OnClick="()=> AddNewStep()" Variant="Variant.Filled" Color="Color.Info" Size="Size.Medium" Icon="@Icons.Material.Filled.Add"></MudIconButton>
+        </MudStack>
+    </MudItem>
+    <MudItem md="12" sm="12" Class="px-16">
+        <MudPaper Class="pa-2 px-4"
+                  Elevation="4">
+
+            <MudText Align="Align.End">
+                <MudButton Variant="Variant.Filled" OnClick="AddNewItem" Color="Color.Primary" Class="my-2">Add New Item</MudButton>
+            </MudText>
+            @foreach (var item in CurrentStepItems)
+            {
+                <MudPaper Elevation="2" Class="pa-4 mt-3" @onclick="()=>EditItem(item.ID)" >
+
+                    <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                        <MudStack Justify="Justify.Center" Spacing="0">
+                            <MudStack AlignItems="AlignItems.Center" Row Spacing="1">
+                                <MudText Typo="Typo.h6">@item.Name</MudText>
+                                <MudText Style="font-weight:bold" Typo="Typo.h6">@($"({item.Price} $)")</MudText>
+                                </MudStack>
+                                <MudText Typo="Typo.body2">@item.Description</MudText>
+
+                            </MudStack>
+                            <MudIconButton OnClick="()=> DeleteItem(item)" Color="Color.Error" Size="Size.Medium" Icon="@Icons.Material.Filled.Close"></MudIconButton>
+                        </MudStack>
+
+
+                    </MudPaper>
+            }
+        </MudPaper>
+
+    </MudItem>
+    <MudItem md="12" sm="12" Class="px-16 py-2">
+        <MudStack Row Justify="Justify.Center" AlignItems="AlignItems.Center">
+            <MudButton Disabled=!CanGoPrevious() OnClick="GoPrevious" Variant="Variant.Filled" Color="Color.Dark" >Previous</MudButton>
+            <MudButton Disabled=!CanGoNext() OnClick="GoNext" Variant="Variant.Filled" Color="Color.Dark">Next</MudButton>
+        </MudStack>
+    </MudItem>
+</MudGrid>
+
+<style>
+    .StepStyle {
+        background-color: #4472C4;
+        color: white;
+    }
+</style>
+
+@code {
+
+}
