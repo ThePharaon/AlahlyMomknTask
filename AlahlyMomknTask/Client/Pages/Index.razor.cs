@@ -218,12 +218,13 @@ namespace AlahlyMomknTask.Client.Pages
         }
         private async void SetCurrentStep(Guid StepID)
         {
-            if (CurrentStep.ID == StepID) return;
+            
             var step = StepsList.FirstOrDefault(s => s.ID == StepID);
             if (step == null)
                 await LoadAllSteps(true);
             else
-            { 
+            {
+                if (CurrentStep.ID == StepID) return;
                 CurrentStep = step;
                 await LoadAllStepsItems(StepID);
             }

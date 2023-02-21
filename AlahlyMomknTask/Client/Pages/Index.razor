@@ -21,7 +21,7 @@
                   Elevation="4">
 
             <MudText Align="Align.End">
-                <MudButton Variant="Variant.Filled" OnClick="AddNewItem" Color="Color.Primary" Class="my-2">Add New Item</MudButton>
+                <MudButton Disabled=@(StepsList.Count == 0) Variant="Variant.Filled" OnClick="AddNewItem" Color="Color.Primary" Class="my-2">Add New Item</MudButton>
             </MudText>
             @foreach (var item in CurrentStepItems)
             {
